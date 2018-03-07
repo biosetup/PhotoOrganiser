@@ -13,7 +13,7 @@ class FileMetaDataExtractorSpec extends FlatSpec {
   it should "readMetadata" in {
 
 //    Source.fromURL(getClass.getResource("/test_sony.jpg"))
-    val inputFile = getClass.getResource("/vid_s5.mp4").getFile
+    val inputFile = getClass.getResource("/vid_sony2.mp4").getFile
     val dirs = FileMetaDataExtractor.readMetadata(new File(inputFile))
     dirs.foreach { dir =>
       println(s"dir: ${dir}")
