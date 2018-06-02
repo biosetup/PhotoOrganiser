@@ -1,6 +1,8 @@
 package com.progrexor.photo.date
 
-import java.time.ZonedDateTime
+import java.text.SimpleDateFormat
+import java.time.{LocalDate, LocalDateTime, LocalTime}
+import java.time.format.DateTimeFormatter
 
 import com.drew.metadata.Directory
 import com.progrexor.photo.filescanner.FileMetaDataContainer
@@ -17,8 +19,25 @@ class DateExtractionLogic(implicit config: Config) {
     dateTags.map(dateTag => fileMetaDataContainer.getValue(dateTag.directoryName, dateTag.tagName)).filter(_.isSuccess).map(_.get).toList
   }
 
-  def getTheDate(metadata: List[Directory]): ZonedDateTime = {
-    ZonedDateTime.now()
+  def getDatesX(fileMetaDataContainer: FileMetaDataContainer): List[(String, String)] = {
+    dateTags
+      .map(dateTag => (fileMetaDataContainer.getValue(dateTag.directoryName, dateTag.tagName), dateTag.directoryName+"_"+dateTag.tagName))
+      .filter(_._1.isSuccess)
+      .map(p => (p._1.get, p._2))
+      .toList
+  }
+
+  def getTheDate(dates: List[String]): LocalDateTime = {
+    val x = dates.map { date => date.length match {
+        case 10 => LocalDateTime.from(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy:MM:dd")).atTime(LocalTime.MAX))
+        case 19 => LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss"))
+        case _ => LocalDateTime.now()
+      }
+    }
+    println("=======")
+    x.foreach(println)
+    println("=======")
+    LocalDateTime.now()
   }
 
 

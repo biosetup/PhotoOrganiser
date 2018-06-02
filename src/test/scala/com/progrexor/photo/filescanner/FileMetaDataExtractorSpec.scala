@@ -26,9 +26,13 @@ class FileMetaDataExtractorSpec extends FlatSpec {
     println(dirs.getValue("File", "File Modified Date"))
     println(dirs.getValue("MP4", "Duration"))
 
+    println("==========")
     val dateExtractionLogic = new DateExtractionLogic()
 
-    dateExtractionLogic.getDates(dirs).foreach(println)
+    val dateListX = dateExtractionLogic.getDatesX(dirs)
+    dateListX.foreach(println)
+
+    //dateExtractionLogic.getTheDate(dateList)
   }
 
 }
@@ -76,8 +80,8 @@ class FileMetaDataExtractorSpec extends FlatSpec {
 // Sat Jul 07 05:55:17 +01:00 2012
 
 
-// YYYY:MM:DD
-// HH:MM:SS.sss ZZZ
-// YYYY:MM:DD HH:MM:SS
-// WWW MON DD HH:MM:SS ZZZ YYYY
-// WWW MON DD HH:MM:SS +HH:MM YYYY
+// YYYY:MM:DD (10)
+// HH:MM:SS.sss ZZZ (16)
+// YYYY:MM:DD HH:MM:SS (19)
+// WWW MON DD HH:MM:SS ZZZ YYYY (28)
+// WWW MON DD HH:MM:SS +HH:MM YYYY (31)
