@@ -24,4 +24,10 @@ class FileScannerSpec extends FlatSpec {
     val result = exampleFileNamesList.filter(FileScanner.matchesAll(_, patternList))
     assert(result === List("abs.jpg", "dot.jpg", "aFiLe.JpG", "oformat.png"))
   }
+
+  it should "xxx" in {
+
+    val x = FileScanner.xxx("/Users/andreyd/dev/ttt/QTest")
+
+  }
 }
