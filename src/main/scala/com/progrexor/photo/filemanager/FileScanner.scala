@@ -8,6 +8,10 @@ class FileScanner extends SimpleFileVisitor[Path] {
   override def visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult = {
     println(s"file=${file.toString}")
     FileVisitResult.CONTINUE
+    //TODO: Apply filename filter
+    //TODO: (ACTOR) Call an actor (FileRegistratorActor)
+    //TODO: (ACTOR) Get meta info
+    //TODO: (ACTOR) Register in the DB
   }
 }
 
