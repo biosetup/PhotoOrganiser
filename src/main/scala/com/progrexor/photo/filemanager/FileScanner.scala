@@ -4,9 +4,12 @@ import java.io.File
 import java.nio.file._
 import java.nio.file.attribute.BasicFileAttributes
 
-class FileScanner extends SimpleFileVisitor[Path] {
+import akka.actor.ActorRef
+
+class FileScanner(actorRef: ActorRef) extends SimpleFileVisitor[Path] {
   override def visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult = {
-    println(s"file=${file.toString}")
+    //println(s"file=${file.toString}")
+    actorRef ! file.toString
     FileVisitResult.CONTINUE
     //TODO: Apply filename filter
     //TODO: (ACTOR) Call an actor (FileRegistratorActor)
@@ -24,9 +27,9 @@ object FileScanner {
     //TODO: Recursion for subfolders
   }
 
-  def xxx(path: String) = {
+  def xxx(path: String, actorRef: ActorRef) = {
     val startingPath = Paths.get(path)
-    val x = Files.walkFileTree(startingPath, new FileScanner)
+    val x = Files.walkFileTree(startingPath, new FileScanner(actorRef))
     println(s"x=${x}")
   }
 

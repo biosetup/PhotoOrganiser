@@ -1,11 +1,13 @@
 package com.progrexor.photo.filemanager
 
-import java.io.File
-import java.util.regex.Pattern
-
+import akka.actor.{ActorRef, ActorSystem}
 import org.scalatest.FlatSpec
+import com.progrexor.photo.actors.FileRegistrator
 
 class FileScannerSpec extends FlatSpec {
+
+  val system: ActorSystem = ActorSystem("helloAkka")
+  val fileRegistratorActor: ActorRef = system.actorOf(FileRegistrator.props, "FileRegistratorActor")
 
   behavior of "FileScanner"
 
@@ -27,7 +29,7 @@ class FileScannerSpec extends FlatSpec {
 
   it should "xxx" in {
 
-    val x = FileScanner.xxx("/Users/andreyd/dev/ttt/QTest")
+    val x = FileScanner.xxx("src", fileRegistratorActor)
 
   }
 }

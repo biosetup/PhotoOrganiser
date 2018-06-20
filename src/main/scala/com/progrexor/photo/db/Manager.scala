@@ -6,7 +6,7 @@ import scala.collection.JavaConverters._
 object Manager {
   lazy val connection = {
     Class.forName("org.h2.Driver")
-    DriverManager.getConnection("jdbc:h2:~/test")
+    DriverManager.getConnection("jdbc:h2:mem:test")
   }
 
   lazy val statement = connection.createStatement()

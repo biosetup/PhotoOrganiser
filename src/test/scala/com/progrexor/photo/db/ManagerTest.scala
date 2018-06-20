@@ -8,7 +8,7 @@ class ManagerTest extends FlatSpec {
 
   it should "printDBInfo" in {
     Manager.printDBInfo
-    //Manager.createEmptyTable
+    Manager.createEmptyTable
     Manager.selectAll
     Manager.insertName("AAA")
     Manager.selectAll
