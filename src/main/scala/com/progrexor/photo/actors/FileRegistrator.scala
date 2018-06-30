@@ -5,7 +5,10 @@ import akka.actor.{Actor, Props}
 class FileRegistrator extends Actor {
 
   override def receive: Receive = {
-    case str: String => println(s"Print from actor: ${str}")
+    case str: String => {
+      Thread.sleep(500)
+      println(s"Print from actor: ${str}")
+    }
   }
 
 }

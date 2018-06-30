@@ -1,13 +1,14 @@
 package com.progrexor.photo.filemanager
 
 import akka.actor.{ActorRef, ActorSystem}
-import org.scalatest.FlatSpec
+import akka.routing.RoundRobinPool
 import com.progrexor.photo.actors.FileRegistrator
+import org.scalatest.FlatSpec
 
 class FileScannerSpec extends FlatSpec {
 
   val system: ActorSystem = ActorSystem("helloAkka")
-  val fileRegistratorActor: ActorRef = system.actorOf(FileRegistrator.props, "FileRegistratorActor")
+  val fileRegistratorActor: ActorRef = system.actorOf(FileRegistrator.props.withRouter(RoundRobinPool(20)), "FileRegistratorActor")
 
   behavior of "FileScanner"
 
@@ -30,6 +31,8 @@ class FileScannerSpec extends FlatSpec {
   it should "xxx" in {
 
     val x = FileScanner.xxx("src", fileRegistratorActor)
+    Thread.sleep(7000)
 
   }
+
 }
