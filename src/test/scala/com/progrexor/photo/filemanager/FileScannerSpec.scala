@@ -8,7 +8,7 @@ import org.scalatest.FlatSpec
 class FileScannerSpec extends FlatSpec {
 
   val system: ActorSystem = ActorSystem("helloAkka")
-  val fileRegistratorActor: ActorRef = system.actorOf(FileRegistrator.props.withRouter(RoundRobinPool(20)), "FileRegistratorActor")
+  val fileRegistratorActor: ActorRef = system.actorOf(FileRegistrator.props.withRouter(RoundRobinPool(30)), "FileRegistratorActor")
 
   behavior of "FileScanner"
 

@@ -19,6 +19,8 @@ object Manager {
   }
 
   def createEmptyTable = {
+    //TODO check if db or table exists
+    // CREATE TABLE IF NOT EXISTS TEST(ID INT PRIMARY KEY, NAME VARCHAR(255));
     statement.execute("create table photos(name varchar)")
   }
 
