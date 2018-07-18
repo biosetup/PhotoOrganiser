@@ -27,7 +27,7 @@ object FileScanner {
     //TODO: Recursion for subfolders
   }
 
-  def xxx(path: String, actorRef: ActorRef) = {
+  def traverseAllFilesTellFileRegister(path: String, actorRef: ActorRef) = {
     val startingPath = Paths.get(path)
     val x = Files.walkFileTree(startingPath, new FileScanner(actorRef))
     println(s"x=${x}")

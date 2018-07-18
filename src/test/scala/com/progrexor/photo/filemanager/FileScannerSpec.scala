@@ -28,9 +28,9 @@ class FileScannerSpec extends FlatSpec {
     assert(result === List("abs.jpg", "dot.jpg", "aFiLe.JpG", "oformat.png"))
   }
 
-  it should "xxx" in {
+  it should "traverseAllFilesTellFileRegister" in {
 
-    val x = FileScanner.xxx("src", fileRegistratorActor)
+    val x = FileScanner.traverseAllFilesTellFileRegister("src", fileRegistratorActor)
     Thread.sleep(7000)
 
   }
